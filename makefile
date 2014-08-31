@@ -326,7 +326,7 @@ docs: crypt.tex
 	latex crypt > /dev/null
 	makeindex crypt.idx > /dev/null
 	perl fixupind.pl
-	pdflatex crypt
+	pdflatex crypt > /dev/null
 	sed -b -i 's,^/ID \[.*\]$$,/ID [<0> <0>],g' crypt.pdf
 	mv -ivf crypt.pdf doc/crypt.pdf
 	mv crypt.bak crypt.tex
