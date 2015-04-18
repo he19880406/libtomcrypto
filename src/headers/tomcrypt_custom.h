@@ -389,7 +389,8 @@
 #define LTC_ECC_SHAMIR
 
 #if defined(TFM_DESC) && defined(LTC_MECC)
-   #define LTC_MECC_ACCEL
+   /* XXX-FIXME temporarily disabled as it supports curves y^2 = x^3 + a*x + b only for a == -3 */
+   /* #define LTC_MECC_ACCEL */
 #endif
 
 /* do we want fixed point ECC */
