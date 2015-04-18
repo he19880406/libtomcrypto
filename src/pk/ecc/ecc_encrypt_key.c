@@ -84,7 +84,11 @@ int ecc_encrypt_key(const unsigned char *in,   unsigned long inlen,
     }
 
     pubkeysize = ECC_BUF_SIZE;
+#ifdef LTM_SUPPORTS_MP_SQRTMOD_PRIME_XXX_DEBUG_ONLY_XXX
     if ((err = ecc_export_raw(pub_expt, &pubkeysize, PK_PUBLIC_COMPRESSED, &pubkey)) != CRYPT_OK) {
+#else
+    if ((err = ecc_export_raw(pub_expt, &pubkeysize, PK_PUBLIC, &pubkey)) != CRYPT_OK) {
+#endif
        ecc_free(&pubkey);
        goto LBL_ERR;
     }
