@@ -47,7 +47,7 @@ int ecc_test_shamir(void)
    for (x = 0; x < (int)(sizeof(sizes)/sizeof(sizes[0])); x++) {
        /* get the base point */
        for (z = 0; ltc_ecc_sets[z].size > 0; z++) {
-           if (sizes[z] < (unsigned int)ltc_ecc_sets[z].size) break;
+           if (sizes[x] <= (unsigned int)ltc_ecc_sets[z].size) break;
        }
        LTC_ARGCHK(ltc_ecc_sets[z].name != NULL);
 
