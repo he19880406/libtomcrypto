@@ -411,8 +411,16 @@ const ltc_ecc_set_type ltc_ecc_sets[] = {
 },
 #endif
 {
-   0,
-   NULL, NULL, NULL, NULL, NULL, NULL
+  /* size/bytes */ 0,
+  /* curve name */ NULL,
+  /* prime      */ NULL,
+  /* A          */ NULL,
+  /* B          */ NULL,
+  /* order      */ NULL,
+  /* Gx         */ NULL,
+  /* Gy         */ NULL,
+  /* cofactor   */ 0,
+  /* OID struct */ { { }, 0 },
 }
 };
 
