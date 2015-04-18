@@ -64,7 +64,6 @@ static int _populate_dp_from_oid(unsigned long *oid, unsigned long size, ltc_ecc
   /* done - success */
   return CRYPT_OK;
 
-cleanup7:
   XFREE(dp->Gy);
 cleanup6:
   XFREE(dp->Gx);
@@ -144,7 +143,7 @@ cleanup1:
 int ecc_import_full(const unsigned char *in, unsigned long inlen, ecc_key *key, ltc_ecc_set_type *dp)
 {
   void *prime, *order, *a, *b, *gx, *gy;
-  ltc_asn1_list seq_fieldid[2], seq_curve[3], seq_ecparams[6], seq_priv[4], seq_pub[2];
+  ltc_asn1_list seq_fieldid[2], seq_curve[3], seq_ecparams[6], seq_priv[4];
   unsigned char bin_a[ECC_MAXSIZE], bin_b[ECC_MAXSIZE], bin_k[ECC_MAXSIZE], bin_g[2*ECC_MAXSIZE+1], bin_xy[2*ECC_MAXSIZE+2], bin_seed[128];
   unsigned long len_a, len_b, len_k, len_g, len_xy, len_oid;
   unsigned long cofactor = 0, ecver = 0, pkver = 0, tmpoid[16], curveoid[16];
