@@ -265,7 +265,11 @@ static int sqrtmod_prime(void *a, void *b, void *c)
    LTC_ARGCHK(a != NULL);
    LTC_ARGCHK(b != NULL);
    LTC_ARGCHK(c != NULL);
+#ifdef LTM_SUPPORTS_MP_SQRTMOD_PRIME_XXX_DEBUG_ONLY_XXX
    return mpi_to_ltc_error(mp_sqrtmod_prime(a, b, c));
+#else
+   return CRYPT_ERROR;
+#endif
 }
 
 /* div */
