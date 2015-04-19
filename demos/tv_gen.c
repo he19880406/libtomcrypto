@@ -740,13 +740,8 @@ void ecc_gen(void)
    mp_init(&a);
 
    for (x = 0; ltc_ecc_sets[x].size != 0; x++) {
-        /* XXX-FIXME temporarily run only with curves that were defined in old libtomcrypt and skip the rest */
-        if(strcmp(ltc_ecc_sets[x].name, "SECP112R1") && strcmp(ltc_ecc_sets[x].name, "SECP128R1") &&
-           strcmp(ltc_ecc_sets[x].name, "SECP160R1") && strcmp(ltc_ecc_sets[x].name, "SECP192R1") &&
-           strcmp(ltc_ecc_sets[x].name, "SECP224R1") && strcmp(ltc_ecc_sets[x].name, "SECP256R1") &&
-           strcmp(ltc_ecc_sets[x].name, "SECP384R1") && strcmp(ltc_ecc_sets[x].name, "SECP521R1")) continue;
 
-        fprintf(out, "ECC-%d\n", ltc_ecc_sets[x].size*8);
+        fprintf(out, "%s\n", ltc_ecc_sets[x].name);
         mp_set(k, 1);
 
         mp_read_radix(order,   (char *)ltc_ecc_sets[x].order, 16);
