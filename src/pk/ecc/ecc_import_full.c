@@ -59,11 +59,12 @@ static int _populate_dp_from_oid(unsigned long *oid, unsigned long size, ltc_ecc
   dp->size = ltc_ecc_sets[i].size;
   /* name */
   len = (unsigned long)strlen(ltc_ecc_sets[i].name);
-  if ((dp->name = XMALLOC(1+len)) == NULL)      goto cleanup6;
+  if ((dp->name = XMALLOC(1+len)) == NULL)      goto cleanup7;
   strncpy(dp->name, ltc_ecc_sets[i].name, 1+len);
   /* done - success */
   return CRYPT_OK;
 
+cleqnup7:
   XFREE(dp->Gy);
 cleanup6:
   XFREE(dp->Gx);
