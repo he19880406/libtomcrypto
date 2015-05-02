@@ -64,7 +64,7 @@ static int _populate_dp_from_oid(unsigned long *oid, unsigned long size, ltc_ecc
   /* done - success */
   return CRYPT_OK;
 
-cleqnup7:
+cleanup7:
   XFREE(dp->Gy);
 cleanup6:
   XFREE(dp->Gx);
