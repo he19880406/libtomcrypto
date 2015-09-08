@@ -140,6 +140,13 @@ unsigned long rng_get_bytes(unsigned char *out, unsigned long outlen,
 
    LTC_ARGCHK(out != NULL);
 
+   if (ltc_rng) {
+      x = ltc_rng(out, outlen, callback);
+      if (x != 0) {
+         return x;
+      }
+   }
+
 #if defined(LTC_DEVRANDOM)
    x = rng_nix(out, outlen, callback);   if (x != 0) { return x; }
 #endif
