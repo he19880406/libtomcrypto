@@ -263,6 +263,18 @@ static void _unregister_all(void)
 #endif
 } /* _cleanup() */
 
+
+static unsigned long my_test_rng(unsigned char *buf, unsigned long len,
+                             void (*callback)(void))
+{
+   unsigned long n;
+   LTC_UNUSED_PARAM(callback);
+   for (n = 0; n < len; ++n) {
+      buf[n] = 4;
+   }
+   return n;
+}
+
 void reg_algs(void)
 {
   int err;
@@ -401,6 +413,15 @@ register_prng(&rc4_desc);
 #ifdef LTC_SOBER128
 register_prng(&sober128_desc);
 #endif
+
+   ltc_rng = my_test_rng;
+
+   if ((err = rng_make_prng(128, find_prng("yarrow"), &yarrow_prng, NULL)) != CRYPT_OK) {
+      fprintf(stderr, "rng_make_prng with 'my_test_rng' failed: %s\n", error_to_string(err));
+      exit(EXIT_FAILURE);
+   }
+
+   ltc_rng = NULL;
 
    if ((err = rng_make_prng(128, find_prng("yarrow"), &yarrow_prng, NULL)) != CRYPT_OK) {
       fprintf(stderr, "rng_make_prng failed: %s\n", error_to_string(err));
