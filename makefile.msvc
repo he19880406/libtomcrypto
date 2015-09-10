@@ -103,8 +103,8 @@ src/pk/asn1/der/sequence/der_encode_sequence_ex.obj \
 src/pk/asn1/der/sequence/der_encode_sequence_multi.obj \
 src/pk/asn1/der/sequence/der_encode_subject_public_key_info.obj \
 src/pk/asn1/der/sequence/der_length_sequence.obj src/pk/asn1/der/sequence/der_sequence_free.obj \
-src/pk/asn1/der/set/der_encode_set.obj src/pk/asn1/der/set/der_encode_setof.obj \
-src/pk/asn1/der/short_integer/der_decode_short_integer.obj \
+src/pk/asn1/der/sequence/der_sequence_shrink.obj src/pk/asn1/der/set/der_encode_set.obj \
+src/pk/asn1/der/set/der_encode_setof.obj src/pk/asn1/der/short_integer/der_decode_short_integer.obj \
 src/pk/asn1/der/short_integer/der_encode_short_integer.obj \
 src/pk/asn1/der/short_integer/der_length_short_integer.obj \
 src/pk/asn1/der/teletex_string/der_decode_teletex_string.obj \
