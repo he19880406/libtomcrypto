@@ -17,7 +17,7 @@
 /**
   @file ecc_sign_hash.c
   ECC Crypto, Tom St Denis
-*/  
+*/
 
 #ifdef LTC_MECC
 
@@ -51,12 +51,12 @@ int ecc_sign_hash_raw(const unsigned char *in,  unsigned long inlen,
    if (key->type != PK_PRIVATE) {
       return CRYPT_PK_NOT_PRIVATE;
    }
-   
+
    /* is the IDX valid ?  */
    if (ltc_ecc_is_valid_idx(key->idx) != 1) {
       return CRYPT_PK_INVALID_TYPE;
    }
-   
+
    if ((err = prng_is_valid(wprng)) != CRYPT_OK) {
       return err;
    }
@@ -65,16 +65,16 @@ int ecc_sign_hash_raw(const unsigned char *in,  unsigned long inlen,
    if ((err = mp_init_multi(&p, &e, NULL)) != CRYPT_OK) {
       return err;
    }
-   if ((err = mp_read_radix(p, (char *)key->dp->order, 16)) != CRYPT_OK)                      { goto errnokey; }
+   if ((err = mp_read_radix(p, (char *)key->dp->order, 16)) != CRYPT_OK)                { goto errnokey; }
 
    /* get the hash and load it as a bignum into 'e' */
    pbits = mp_count_bits(p);
    pbytes = (pbits+7) >> 3;
-      if (pbits > inlen*8) {
-     if ((err = mp_read_unsigned_bin(e, (unsigned char *)in, inlen)) != CRYPT_OK)        { goto errnokey; }
+   if (pbits > inlen*8) {
+     if ((err = mp_read_unsigned_bin(e, (unsigned char *)in, inlen)) != CRYPT_OK)       { goto errnokey; }
    }
    else if (pbits % 8 == 0) {
-     if ((err = mp_read_unsigned_bin(e, (unsigned char *)in, pbytes)) != CRYPT_OK)            { goto errnokey; }
+     if ((err = mp_read_unsigned_bin(e, (unsigned char *)in, pbytes)) != CRYPT_OK)      { goto errnokey; }
    }
    else {
      shift_right = 8 - pbits % 8;
@@ -83,7 +83,7 @@ int ecc_sign_hash_raw(const unsigned char *in,  unsigned long inlen,
        ch = (in[i] << (8-shift_right));
        buf[i] = buf[i] ^ (in[i] >> shift_right);
      }
-     if ((err = mp_read_unsigned_bin(e, (unsigned char *)buf, pbytes)) != CRYPT_OK)           { goto errnokey; }
+     if ((err = mp_read_unsigned_bin(e, (unsigned char *)buf, pbytes)) != CRYPT_OK)     { goto errnokey; }
    }
 
    /* make up a key and export the public copy */
@@ -97,7 +97,7 @@ int ecc_sign_hash_raw(const unsigned char *in,  unsigned long inlen,
 
       if (mp_iszero(r) == LTC_MP_YES) {
          ecc_free(&pubkey);
-      } else { 
+      } else {
         /* find s = (e + xr)/k */
         if ((err = mp_invmod(pubkey.k, p, pubkey.k)) != CRYPT_OK)            { goto error; } /* k = 1/k */
         if ((err = mp_mulmod(key->k, r, p, s)) != CRYPT_OK)                  { goto error; } /* s = xr */
@@ -160,7 +160,7 @@ int ecc_sign_hash(const unsigned char *in,  unsigned long inlen,
 
 error:
    mp_clear_multi(r, s, NULL);
-   return err;   
+   return err;
 }
 
 #endif
